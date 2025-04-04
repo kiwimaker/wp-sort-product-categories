@@ -1,0 +1,303 @@
+/**
+ * Admin-specific CSS for Custom Category Product Order plugin.
+ */
+
+/* General styles for the admin page wrap */
+.ccpo-admin-wrap {
+    margin-top: 20px;
+}
+
+/* Style the category selection dropdown and description */
+.ccpo-form-table th {
+    width: 200px; /* Give label column a fixed width */
+}
+
+.ccpo-category-select {
+    min-width: 350px; /* Make the dropdown wider */
+    margin-right: 10px;
+}
+
+.ccpo-form-table .description {
+    display: inline-block;
+    margin-left: 10px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Container for the sortable list */
+.ccpo-product-list-container {
+    margin-top: 25px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccd;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    min-height: 100px; /* Ensure it has some height even when empty */
+}
+
+/* Initial message shown before loading products */
+.ccpo-product-list-container .initial-message {
+    color: #888;
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 1.1em;
+}
+
+/* Loading indicator */
+.ccpo-loading {
+    text-align: center;
+    padding: 30px 20px;
+    color: #555;
+}
+.ccpo-loading .spinner {
+    float: none;
+    vertical-align: middle;
+    margin-right: 8px;
+    visibility: visible; /* Ensure spinner is visible */
+}
+
+/* No products message */
+.ccpo-product-list-container .no-products-message {
+    color: #888;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+/* Error message */
+.ccpo-product-list-container .error-message {
+    color: #d63638;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+}
+
+/* Drag instructions */
+.ccpo-product-list-container .sort-instructions {
+    margin-bottom: 15px;
+    color: #3c434a;
+    font-size: 1.05em;
+}
+
+/* Styling for the sortable list itself */
+.ccpo-sortable-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #ddd;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+}
+
+/* Individual sortable list items */
+.ccpo-sortable-list .ccpo-product-item {
+    cursor: move;
+    margin: 0; /* Remove default margin */
+    padding: 12px 15px; /* Increased padding */
+    background-color: #fff;
+    border-bottom: 1px solid #eee; /* Separator */
+    display: flex !important; /* Added !important as a test */
+    align-items: center !important; /* Added !important as a test */
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.ccpo-sortable-list .ccpo-product-item:last-child {
+    border-bottom: none;
+    border-radius: 0 0 3px 3px; /* Round bottom corners of last item */
+}
+.ccpo-sortable-list .ccpo-product-item:first-child {
+    border-radius: 3px 3px 0 0; /* Round top corners of first item */
+}
+
+/* Hover effect */
+.ccpo-sortable-list .ccpo-product-item:hover {
+    background-color: #f8f9fa;
+    box-shadow: inset 0 0 0 1px #ddd;
+}
+
+/* Style the drag handle */
+.ccpo-sortable-list .ccpo-product-item .ccpo-handle {
+    margin-right: 15px; /* More space after handle */
+    color: #787c82;
+    cursor: grab;
+    font-size: 20px; /* Make handle slightly larger */
+    opacity: 0.7;
+    transition: opacity 0.2s ease-in-out;
+    flex-shrink: 0; /* Prevent handle from shrinking */
+    align-self: center; /* Explicitly align self */
+}
+.ccpo-sortable-list .ccpo-product-item:hover .ccpo-handle {
+    opacity: 1;
+}
+
+/* Container for the product image */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-image-container {
+    flex-shrink: 0; /* Prevent image container from shrinking */
+    margin-right: 15px;
+    width: 50px; /* Set fixed width */
+    height: 50px; /* Set fixed height */
+    display: flex; /* Use flex here too for centering */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide parts of image if not square */
+    border: 1px solid #eee;
+    background-color: #f8f8f8; /* Light bg for empty space */
+    border-radius: 2px; /* Slightly rounded corners */
+    align-self: center; /* Explicitly align self */
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-image {
+    display: block; /* Remove potential extra space */
+    width: 100%; /* Force width to container */
+    height: 100%; /* Force height to container */
+    object-fit: cover; /* Scale image nicely while covering container */
+}
+
+/* Container for title and ID */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-details {
+    flex-grow: 1; /* Allow this section to take up available space */
+    flex-shrink: 1; /* Allow shrinking if needed */
+    display: flex;
+    flex-direction: column; /* Stack title and ID vertically */
+    justify-content: center;
+    margin-right: 15px; /* Space before actions */
+    min-width: 0; /* Important for flex items that might overflow */
+    align-self: center; /* Explicitly align self */
+}
+
+/* Product title and ID */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-title {
+    flex-grow: 1; /* Allow title to take up available space */
+    font-weight: 500;
+    color: #2271b1;
+    line-height: 1.3;
+    word-break: break-word; /* Handle long titles */
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-id {
+    font-size: 0.9em;
+    color: #646970;
+    margin-left: 0; /* Reset margin */
+    margin-top: 2px; /* Add slight space below title */
+    white-space: nowrap; /* Prevent ID from wrapping */
+}
+
+/* Meta information (Status, Date, Stock) */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-meta {
+    margin-top: 5px;
+    font-size: 0.85em;
+    color: #50575e;
+    line-height: 1.4;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item {
+    margin-right: 12px; /* Space between meta items */
+    display: inline-block; /* Display items inline */
+    white-space: nowrap;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item strong {
+    font-weight: 600;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item strong.status-publish {
+    color: #008000; /* Green for published */
+    font-weight: bold;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item strong.status-draft {
+    color: #ff8c00; /* Dark Orange for draft */
+    font-weight: bold;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item strong.status-pending {
+    color: #ffa500; /* Orange for pending */
+    font-weight: bold;
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-meta-item strong.status-private {
+    color: #800080; /* Purple for private */
+    font-weight: bold;
+}
+
+/* Container for Price and Action Links */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-actions {
+    flex-shrink: 0; /* Prevent shrinking */
+    display: flex;
+    flex-direction: column; /* Stack price and links */
+    align-items: flex-end; /* Align items to the right */
+    justify-content: center;
+    margin-left: auto; /* Push actions container to the far right */
+    min-width: 100px; /* Ensure minimum width */
+}
+
+/* Product Price */
+.ccpo-sortable-list .ccpo-product-item .ccpo-product-price {
+    font-weight: 600;
+    color: #1d2327;
+    text-align: right;
+    white-space: nowrap;
+    margin-bottom: 5px; /* Space between price and links */
+}
+
+/* Action Links (View/Edit) */
+.ccpo-sortable-list .ccpo-product-item .ccpo-action-links {
+    display: flex;
+    gap: 5px; /* Space between buttons */
+}
+
+.ccpo-sortable-list .ccpo-product-item .ccpo-action-links .button-small {
+    padding: 2px 8px; /* Adjust button padding */
+    line-height: 1.5;
+    height: auto;
+}
+
+/* Style for the item being dragged */
+.ccpo-sortable-list .ccpo-product-item.ui-sortable-helper {
+    background-color: #eef7ff;
+    border: 1px solid #99c7e4;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+}
+
+/* Style for the placeholder (where the item will drop) */
+.ui-state-highlight.ccpo-placeholder {
+    height: 45px; /* Adjust height slightly more than item */
+    background-color: #e6f7ff; /* Lighter blue background */
+    border: 2px dashed #91d5ff;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    visibility: visible !important; /* Ensure placeholder is always visible */
+}
+
+/* Save button area */
+.ccpo-submit-area {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.ccpo-save-button {
+    margin-right: 8px;
+    padding: 8px 16px; /* Slightly larger button */
+    font-size: 14px;
+}
+
+/* Spinner next to save button */
+.ccpo-spinner {
+    visibility: hidden; /* Hidden by default, shown via JS */
+    vertical-align: middle;
+    float: none; /* Override WP default float */
+}
+
+.ccpo-spinner.is-active {
+    visibility: visible;
+}
+
+/* Feedback area for success/error messages */
+.ccpo-admin-feedback {
+    margin-top: 15px;
+}
+
+.ccpo-admin-feedback .notice {
+    margin: 0 0 15px 0; /* Adjust margin */
+} 
