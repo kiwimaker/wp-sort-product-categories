@@ -77,11 +77,34 @@ class CCPO_Frontend_Sort {
 
 					// If we still have a valid list of ordered IDs after sanitization
 					if ( ! empty( $ordered_ids ) ) {
+						// Get all products in this category that are not in the custom order
+						$args = array(
+							'post_type'      => 'product',
+							'posts_per_page' => -1,
+							'post_status'    => 'publish',
+							'fields'         => 'ids',
+							'tax_query'      => array(
+								array(
+									'taxonomy'         => 'product_cat',
+									'field'            => 'term_id',
+									'terms'            => $category_id,
+									'include_children' => false,
+								),
+							),
+							'post__not_in'   => $ordered_ids,
+							'orderby'        => 'menu_order title',
+							'order'          => 'ASC',
+						);
+						$remaining_products = get_posts( $args );
+
+						// Merge the custom ordered products with remaining products
+						$all_products = array_merge( $ordered_ids, $remaining_products );
+
 						// Set the orderby parameter to 'post__in'
 						$query->set( 'orderby', 'post__in' );
 
 						// Pass the array of ordered post IDs to 'post__in'
-						$query->set( 'post__in', $ordered_ids );
+						$query->set( 'post__in', $all_products );
 
 						// It might be necessary to explicitly remove other ordering parameters
 						// depending on the theme or other plugins.
