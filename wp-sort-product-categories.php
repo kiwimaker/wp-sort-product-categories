@@ -3,7 +3,7 @@
  * Plugin Name:       Custom Category Product Order for WooCommerce
  * Plugin URI:        https://nexir.es/
  * Description:       Allows sorting products differently for each WooCommerce product category.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Nexir Marketing
  * Author URI:        https://nexir.es/
  * License:           GPL v2 or later
@@ -64,7 +64,7 @@ add_action( 'before_woocommerce_init', function() {
 /**
  * Define Constants
  */
-define( 'CCPO_VERSION', '1.0.0' );
+define( 'CCPO_VERSION', '1.0.1' );
 // Use untrailingslashit() for better compatibility with path joining.
 define( 'CCPO_PLUGIN_DIR', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 define( 'CCPO_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
